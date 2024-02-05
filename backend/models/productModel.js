@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const productSchema =mongoose.Schema({
+const productSchema = new mongoose.Schema({
     name:{type:String,required:[true,"please Enter product Name"]},
     description:{type:String,required:[true,"Please enter product description"]},
     price:{type:Number,required:[true,"Please enter product price"],maxLength:[8,"Price cannot exceed 8 cahracters"]},
@@ -18,6 +18,12 @@ const productSchema =mongoose.Schema({
     category:{type:String,required:[true,"Please enter Product Category"]},
     stock:{type:Number,requied:[true,"Please enter product Stock"],maxLength:[4,"Stock cannot exceed 4 characters"],default:1},
     reviews:[{name:{type:String,required:true,},rating:{type:Number,required:true,},comment:{type:String,required:true,}}],
+   
+   user:{
+    type : mongoose.Schema.ObjectId ,
+    ref: "User",
+    required:true,
+   },
     createdAt:{
         type:Date,default:Date.now
     }
